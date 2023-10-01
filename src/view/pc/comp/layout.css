@@ -1,0 +1,45 @@
+.pc-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-top: 3px;
+}
+.header {
+    padding: 0 30px;
+    height: 46px;
+    border-bottom: 1px solid rgb(137 137 137 / 37%);
+    display: flex;
+    justify-content: space-between;
+}
+.body {
+    flex: auto;
+}
+.company-name {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 8px;
+    transform: translateY(-10px);
+    display: inline-block;
+}
+.ant-float-btn-default {
+    width: 200px;
+    height: 200px;
+}
+.ant-float-btn-icon {
+    width: auto !important;
+}
+.footer {
+    height: 30px;
+    margin: 300px auto 0 auto;
+    width: 500px;
+    text-align: center;
+    font-size: 13px;
+    color: gray;
+}

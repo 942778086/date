@@ -1,0 +1,26 @@
+.about-us-content {
+    padding: 30px;
+    width: 50%;
+    min-width: 400px;
+    margin: 30px auto;
+    text-align: left;
+    box-shadow: 0px 0px 12px 5px rgba(0,0,0,0.06);
+}
+
+.intro-title {
+    font-size: 18px;
+    text-align: left;
+    position: relative;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.intro-title::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.06);
+}
