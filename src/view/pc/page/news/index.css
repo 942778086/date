@@ -17,4 +17,26 @@
     padding: 8px;
     margin: 15px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    cursor: pointer;
+}
+
+.news-tag .ant-tag {
+    color: black;
+    border: 1px solid gray;
+}
+
+.news-detail-back {
+    float: left;
+    position: absolute;
+}
+
+.news-detail-title {
+    font-weight: bold;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.news-detail-content {
+    width: 80%;
+    margin: 50px auto;
 }

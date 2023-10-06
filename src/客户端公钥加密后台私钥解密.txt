@@ -1,0 +1,42 @@
+    public static String encryptByPublicKey(String publicKeyText, String text) throws Exception {
+        // 返回按照 X.509 标准进行编码的密钥的字节
+        // x509EncodedKeySpec2 是一种规范、规格
+        X509EncodedKeySpec x509EncodedKeySpec2 = new X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyText));
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        // 让密钥工厂按照指定的 规范 生成公钥
+        PublicKey publicKey = keyFactory.generatePublic(x509EncodedKeySpec2);
+        Cipher cipher = Cipher.getInstance("RSA");
+        // 对加密初始化，使用加密模式，公钥加密
+        // Cipher.ENCRYPT_MODE 可以用 1 代替
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+
+        byte[] result = cipher.doFinal(text.getBytes());
+        // 返回 Base64编码的字符串
+        return Base64.getEncoder().encodeToString(result);
+    }
+
+    public static String decryptByPrivateKey(String privateKeyText, String text) throws Exception {
+        PKCS8EncodedKeySpec pkcs8EncodedKeySpec5 = new PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyText));
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        PrivateKey privateKey = keyFactory.generatePrivate(pkcs8EncodedKeySpec5);
+        Cipher cipher = Cipher.getInstance("RSA");
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        byte[] result = cipher.doFinal(Base64.getDecoder().decode(text));
+        return new String(result);
+    }
+
+
+    public static void main(String[] args) throws Exception {
+        String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCQAw0b684N4E103Ao3UtxrHhoq8v2AIAX+DRYtl02QnkJU9uNE5YMTyieOpHpqbIUqx0JiCeCSvcHw06ipeOQuOF+B+bzMWaaYs/tMExoKOm6OTYs8X62jPlBpGToKCPKiRy7bER7cqbs/SU80R2u7GbTzUnb0nWr4+p9fwNGacQIDAQAB";
+        String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAJADDRvrzg3gTXTcCjdS3GseGiry/YAgBf4NFi2XTZCeQlT240TlgxPKJ46kempshSrHQmIJ4JK9wfDTqKl45C44X4H5vMxZppiz+0wTGgo6bo5NizxfraM+UGkZOgoI8qJHLtsRHtypuz9JTzRHa7sZtPNSdvSdavj6n1/A0ZpxAgMBAAECgYA/BHbKDwed3tdGGbuGtgWqAgQlYys208yLfSKFVL4mWHpiP5732Q7grAdfTe4bf91N+N+9kuDolYy2W4hkkHgYbyyxwPAKw1FW5nAVJqUR+c0pbtyxhBqIGAYMCZwXOrI2EHj8Q6zGtjCEC1F+nh5flknkRoy8f8KY8//zUYPVWQJBAOOXIHIHIQnKbTGXpLhvHKdR08+BdqlLkaefNmOpPak/q0e/UDo3jKopKUINzCK8nqYA8MMRZa4vZbY4uBIKPL8CQQCh/RgDWKfWFL7WbzDRpAyGUauxD+SFMk8f1z4+4AGkMJMaFNu6NC+RYuW8geTVvsn/v/wOvGx0hDbjackSyITPAkBLSqbYMlWSuJ4RJvq+bTvMeryYzFqmPTLNglVq+QVGJaMTVE5FRDVL4dwdVxUudLoDbxI3Zlz+F/4NH4x9o1dfAkBNKXRw06BPN96X4qtMkWpt6SVx2HIwiIBsWGmMJcRiY8kOmXT5Q7aM+KEapH1O2+z46Ii2tEatUfWbal6flei9AkEAxUiNkjK+568C+cRd3rZIMURKXGnRlC9a6hPwWgUlnrNZbMmJOX7Rh4iTBJByoMD/2K0xd2AVKtJ5ARf6Y14YqQ==";
+        String text = "Abc123Defg";
+        System.out.println("***************** 公钥加密私钥解密开始 *****************");
+        // 用公钥加密得到 text1
+        String text1 = encryptByPublicKey(publicKey, text);
+        // 用私钥解密 text1 得到 text2
+        String text2 = decryptByPrivateKey(privateKey, text1);
+        System.out.println("加密前：" + text);
+        System.out.println("加密后：" + text1);
+        System.out.println("解密后：" + text2);
+        System.out.println("***************** 公钥加密私钥解密结束 *****************");
+    }

@@ -1,6 +1,7 @@
 .pc-layout {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -37,7 +38,7 @@
 }
 .footer {
     height: 30px;
-    margin: 300px auto 0 auto;
+    margin: 0 auto;
     width: 500px;
     text-align: center;
     font-size: 13px;

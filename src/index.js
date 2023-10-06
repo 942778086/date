@@ -4,7 +4,11 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom';
+import axios from './service/axios';
+import api from './service/api';
 
+React.Component.prototype.$http = axios;
+React.Component.prototype.$api = api;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Router>
