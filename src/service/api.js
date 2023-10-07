@@ -27,7 +27,13 @@ const api = {
         })
     },
     onlineCredit: (data) => {
-        return axios.post('/balance/online', { data: data })
+        return axios.post('/balance/online', data)
+    },
+    callAliPay: (orderId) => {
+        return axios.post(`/pay/bank/ali/pay/${orderId}`)
+    },
+    callWechatPay: (orderId) => {
+        return axios.post(`/pay/bank/wechat/${orderId}`)
     },
     codeCredit: (data) => {
         return new Promise(resolve => {

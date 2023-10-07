@@ -9,4 +9,20 @@ module.exports = function (app) {
             "^/user": "/user"
         }
     }))
+    app.use(createProxyMiddleware('/balance', {
+        target: 'http://47.92.199.153:8082',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/balance": "/balance"
+        }
+    }))
+    app.use(createProxyMiddleware('/pay', {
+        target: 'http://47.92.199.153:8082',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+            "^/pay": "/pay"
+        }
+    }))
 }
