@@ -7,16 +7,7 @@ import {LeftCircleOutlined} from '@ant-design/icons'
 
 
 function News() {
-    const [list, setList] = useState([{
-        title: 'xxxxxxxxxxxx',
-        newsType: 'XW'
-    }, {
-        title: 'xxxxxxxxxxxxxx',
-        newsType: 'GG'
-    }, {
-        title: 'xxxxxxxxxxxxxxxxx',
-        newsType: 'HD'
-    }]);
+    const [list, setList] = useState([]);
     const colorMap = {
         ZH: {
             color: '#00000005',

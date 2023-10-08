@@ -1,7 +1,8 @@
-import { Button, InputNumber, Form, Input, Radio, Tabs } from 'antd';
+import { Button, InputNumber, Modal, Form, Input, Radio, Tabs } from 'antd';
 import './index.css'
 import { AlipayCircleOutlined, WechatOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import api from '../../../../service/api.js'
 
 function AddCredit() {
     const items = [{
@@ -14,16 +15,78 @@ function AddCredit() {
     const [curMode, setCurMode] = useState(0);
     const [onlineForm] = Form.useForm();
     const [codeForm] = Form.useForm();
+    const [isModalOpen, setIsModalOpen] = useState(false);
     window.codeForm = codeForm;
     const onChange = (e) => { setCurMode(e) };
     const onlineCharge = () => {
         console.log(onlineForm)
         onlineForm.validateFields().then((data) => {
             console.log(data);
+            const isAlipay = data.way === 'aliPay';
+            api.onlineCredit({
+                payAmount: data.num.toString(),
+                payType: isAlipay ? 'alibank' : 'wechat',
+                source: 'pc',
+                telephone: data.account
+            }).then(res => {
+                const orderId = res.retData.orderId;
+                const apiFunc = isAlipay ? api.callAliPay : api.callWechatPay
+                apiFunc(orderId).then(orderRes => {
+                    if (isAlipay) {
+                        const urlParams = orderRes.retData;
+                        const url = `https://openapi.alipay.com/gateway.do?${urlParams}`
+                        alert(url)
+                        const div = document.createElement('div');
+                        div.innerHTML = `
+                        <form name="punchout_form" method="post" action="${url}"> </form>
+                        `
+                        div.style.cssText = 'display: none';
+                        document.body.appendChild(div);
+                        div.querySelector('form').submit();
+                    } else {
+                        const retData = orderRes.retData;
+                        wx.config({
+                            debug: false,
+                            appId: '',
+                            timestamp: retData.timestamp,
+                            nonceStr: retData.nonceStr,
+                            signature: retData.signData,
+                            jsApiList: ['chooseWXPay']
+                        })
+                        wx.ready(res => {
+                            wx.checkJsApi({
+                                jsApiList: ['chooseWXPay'],
+                                success: (res) => {
+                                    wx.chooseWXPay({
+                                        timestamp: retData.timestamp,
+                                        nonceStr: retData.nonceStr,
+                                        package: retData.wechatOrderId,
+                                        signType: 'MD5',
+                                        paySign: retData.signData,
+                                        success: (res) => {
+                                            alert(res);
+                                        }
+                                    })
+                                }
+                            })
+                        })
+                    }
+
+                    // axios.post(url).then(html => {
+                    //     console.log(html);
+                    //     const id = window.open("", "_blank");
+                    //     id.document.body.innerHTML = "<div></div>";
+                    //     id.document.write(html)
+                    // })
+                    // window.open(url, "_blank");
+                })
+            })
         })
     }
     const codeCharge = (data) => {
-        console.log(data, codeForm.getFieldsValue(['account', 'confirmAccount', 'code']));
+        api.codeCredit(data.account, data.code).then(() => {
+            setIsModalOpen(true);
+        });
     }
 
 
@@ -82,6 +145,9 @@ function AddCredit() {
             }
 
         </div>
+        <Modal title="支付结果" open={isModalOpen} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
+            <p>充值成功！</p>
+        </Modal>
     </div>
     )
 }

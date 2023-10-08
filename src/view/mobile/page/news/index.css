@@ -13,6 +13,22 @@
     background-repeat: no-repeat;
 }
 
+.news-tag .ant-tag {
+    color: black;
+    border: 1px solid gray;
+}
+
+.news-detail-back {
+    float: left;
+    position: absolute;
+}
+
+.news-detail-title {
+    font-weight: bold;
+    width: 90%;
+    margin: 0 auto;
+}
+
 .news .ant-radio-wrapper span.ant-radio+* {
     padding-inline-end: 0px;
 }

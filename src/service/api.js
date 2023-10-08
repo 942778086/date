@@ -1,4 +1,7 @@
 import axios from "./axios"
+import crypto from 'crypto-js'
+import JSEncrypt from 'jsencrypt';
+import { KJUR, KEYUTIL, RSAKey, X509, b64toutf8, ArrayBuffertohex, hextoArrayBuffer } from 'jsrsasign';
 
 const mgrDomain = 'http://47.92.199.153:8083';
 const payDomain = 'http://47.92.199.153:8082'
@@ -35,14 +38,26 @@ const api = {
     callWechatPay: (orderId) => {
         return axios.post(`/pay/bank/wechat/${orderId}`)
     },
-    codeCredit: (data) => {
+    codeCredit: (account, code) => {
         return new Promise(resolve => {
+            // test1
+            const enc = new JSEncrypt();
+            enc.setPublicKey(publicKey);
+            const pwd = enc.encrypt(code);
+            console.log(pwd);
+
+            // test2
+            // const keyObj = X509.getPublicKeyFromCertHex(ArrayBuffertohex(hextoArrayBuffer(window.atob(publicKey))), null, 'x509pub');
+            // const encPwd = KJUR.crypto.Cipher.encrypt(code, keyObj);
+            // console.log(encPwd);
+
             axios.post('/balance/exchange', {
-                data: {
-                    cardType: 'card100',
-                    password: '',
-                    
-                }
+                cardType: 'card100',
+                password: pwd,
+                source: 'gzh',
+                telephone: account
+            }).then(() => {
+                resolve();
             })
         })
     }
