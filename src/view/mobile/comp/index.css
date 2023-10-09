@@ -41,8 +41,8 @@
     display: inline-block;
 }
 .ant-float-btn-default {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
 }
 .ant-float-btn-icon {
     width: auto !important;
@@ -67,4 +67,9 @@
 
 .menu-wrapper {
     padding-right: 5px;
+}
+
+.body .ant-float-btn {
+    inset-inline-end: 10px;
+    inset-block-end: 10px;
 }

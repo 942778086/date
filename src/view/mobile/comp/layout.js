@@ -7,7 +7,7 @@ import News from "../page/news";
 import AddCredit from "../page/addCredit";
 import AboutUs from "../page/aboutUs";
 import ConcatUs from "../page/concatUs";
-import qrcode from '../../../assets/img/qrcode.png'
+import qrcode from '../../../assets/img/wechatQrcode.jpg'
 
 function MobileLayout() {
 
@@ -34,7 +34,7 @@ function MobileLayout() {
         <div className="mobile-layout">
             <div className="header">
                 <div className='logo-name'>
-                    <span className='company-name'>缘宝嘉缘</span>
+                    <span className='company-name'>缘来幸福</span>
                 </div>
                 <div className='menu-wrapper'>
                     <Tabs defaultActiveKey="1" items={menus} onChange={onMenuChange} />
@@ -52,7 +52,7 @@ function MobileLayout() {
                 <FloatButton description="微信公众号" icon={<img className='wechat-qrcode' src={qrcode} />}></FloatButton>
             </div>
             <div className='footer'>
-                © 2002-2023 Amap.com 版权所有 
+                鄂ICP备2023009541
             </div>
         </div>
     )

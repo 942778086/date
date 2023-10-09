@@ -22,7 +22,7 @@
 
 .news-tag .ant-tag {
     color: black;
-    border: 1px solid gray;
+    border: 1px solid #e0e0e0;
 }
 
 .news-detail-back {
@@ -32,7 +32,7 @@
 
 .news-detail-title {
     font-weight: bold;
-    width: 400px;
+    width: 80%;
     margin: 0 auto;
 }
 

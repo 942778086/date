@@ -116,14 +116,17 @@
 }
 
 .page2-label {
+    position: relative;
     text-align: right;
     font-size: 17px;
     float: right;
     font-style: italic;
     color: white;
+    z-index: 99;
 }
 
 .app-exam {
+    position: relative;
     width: 270px;
     height: 510px;
     background-image: url('../../../../assets/img/phone-model.png');
@@ -132,10 +135,11 @@
 }
 
 .app-content {
+    position: absolute;
     width: 200px;
     height: 342px;
-    margin-top: 85px;
-    margin-left: 8px;
+    top: 85px;
+    left: 35px;
 }
 
 .man-dec {

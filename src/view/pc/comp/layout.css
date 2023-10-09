@@ -44,3 +44,7 @@
     font-size: 13px;
     color: gray;
 }
+
+.ant-float-btn-content img {
+    width: 130px;
+}

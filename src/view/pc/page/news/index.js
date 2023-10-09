@@ -101,7 +101,7 @@ function News() {
                     <div className='news-detail'>
                         <div className='news-detail-title'>
                             <div className='news-detail-back' onClick={back}>
-                                <LeftCircleOutlined />
+                                <LeftCircleOutlined />返回
                             </div>
                             { curNews.newsTitle }
                         </div>

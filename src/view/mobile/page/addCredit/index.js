@@ -86,6 +86,10 @@ function AddCredit() {
         })
     }
     const codeCharge = (data) => {
+        if (data.account !== data.confirmAccount) {
+            message.warning('两次账户输入不同');
+            return;
+        }
         api.codeCredit(data.account, data.code).then(() => {
             setIsModalOpen(true);
         });
@@ -98,29 +102,34 @@ function AddCredit() {
             </Tabs>
             {
                 !curMode ?             
-                <Form
-                    form={onlineForm}
-                    name="onlineForm"
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}
-                    style={{ maxWidth: 600 }}
-                    autoComplete="off">
-                    <Form.Item label="充值账户" name="account" rules={[{ required: true, message: '请输入充值账户' }]}>
-                        <Input />
-                    </Form.Item>
-                    <Form.Item label="充值金额" name="num" rules={[{ required: true, message: '请输入充值金额' }]}>
-                        <InputNumber min={1} precision={0} step={10} />
-                    </Form.Item>
-                    <Form.Item label="充值渠道" name="way" rules={[{ required: true, message: '请选择充值渠道' }]}>
-                        <Radio.Group defaultValue="">
-                            <Radio.Button value="aliPay"><AlipayCircleOutlined />支付宝</Radio.Button>
-                            <Radio.Button value="wechat"><WechatOutlined />微信</Radio.Button>
-                        </Radio.Group>
-                    </Form.Item>
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" onClick={onlineCharge}>充值</Button>
-                    </Form.Item>
-                </Form> :
+                <div className='form-wrapper'>
+                    <div className='form-cover'>
+                        功能建设中...
+                    </div>
+                    <Form
+                        form={onlineForm}
+                        name="onlineForm"
+                        labelCol={{ span: 8 }}
+                        wrapperCol={{ span: 16 }}
+                        style={{ maxWidth: 600 }}
+                        autoComplete="off">
+                        <Form.Item label="充值账户" name="account" rules={[{ required: true, message: '请输入充值账户' }]}>
+                            <Input />
+                        </Form.Item>
+                        <Form.Item label="充值金额" name="num" rules={[{ required: true, message: '请输入充值金额' }]}>
+                            <InputNumber min={1} precision={0} step={10} />
+                        </Form.Item>
+                        <Form.Item label="充值渠道" name="way" rules={[{ required: true, message: '请选择充值渠道' }]}>
+                            <Radio.Group defaultValue="">
+                                <Radio.Button value="aliPay"><AlipayCircleOutlined />支付宝</Radio.Button>
+                                <Radio.Button value="wechat"><WechatOutlined />微信</Radio.Button>
+                            </Radio.Group>
+                        </Form.Item>
+                        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                            <Button type="primary" onClick={onlineCharge}>充值</Button>
+                        </Form.Item>
+                    </Form>
+                </div> :
                 <Form
                     form={codeForm}
                     name="codeForm"
@@ -132,7 +141,7 @@ function AddCredit() {
                     <Form.Item label="充值账户" name="account" rules={[{ required: true, message: '请输入充值账户' }]}>
                         <Input onInput={(e) => codeForm.setFieldValue('account', e.target.value)} />
                     </Form.Item>
-                    <Form.Item label="确认账户" name="confirmAccount" rules={[{ required: true, message: '请输入充值金额' }]}>
+                    <Form.Item label="确认账户" name="confirmAccount" rules={[{ required: true, message: '请确认充值账户' }]}>
                         <Input onInput={(e) => codeForm.setFieldValue('confirmAccount', e.target.value)} />
                     </Form.Item>
                     <Form.Item label="兑换码" name="code" rules={[{ required: true, message: '请输入兑换码' }]}>

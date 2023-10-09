@@ -15,18 +15,20 @@
 
 .news-tag .ant-tag {
     color: black;
-    border: 1px solid gray;
+    border: 1px solid #e0e0e0;
 }
 
 .news-detail-back {
     float: left;
     position: absolute;
+    font-size: 12px;
+    transform: translateY(3px);
 }
 
 .news-detail-title {
     font-weight: bold;
     width: 90%;
-    margin: 0 auto;
+    margin: 15px auto 15px auto;
 }
 
 .news .ant-radio-wrapper span.ant-radio+* {

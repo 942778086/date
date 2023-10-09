@@ -24,3 +24,24 @@
 .credit-form-wrapper .ant-tabs-tab {
     color: black;
 }
+
+.form-wrapper {
+    position: relative;
+}
+
+.form-cover {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 40%);
+    z-index: 20;
+    padding-top: 30px;
+    text-align: center;
+    color: white;
+    transform: scale(1.05);
+}
+
+#onlineForm {
+    filter: blur(1px);
+}
