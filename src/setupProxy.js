@@ -10,6 +10,7 @@ module.exports = function (app) {
         }
     }))
     app.use(createProxyMiddleware('/balance', {
+        // http://39.98.108.180:6199
         target: 'http://39.98.108.180:8082',
         secure: false,
         changeOrigin: true,
