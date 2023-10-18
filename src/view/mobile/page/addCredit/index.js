@@ -30,7 +30,7 @@ function AddCredit() {
                 telephone: data.account
             }).then(res => {
                 const orderId = res.retData.orderId;
-                const apiFunc = isAlipay ? api.callAliPay : api.callWechatPay
+                const apiFunc = isAlipay ? api.callMobileAliPay : api.callWechatPay
                 apiFunc(orderId).then(orderRes => {
                     console.log(orderRes);
                     if (isAlipay) {
@@ -103,9 +103,6 @@ function AddCredit() {
             {
                 !curMode ?             
                 <div className='form-wrapper'>
-                    <div className='form-cover'>
-                        功能建设中...
-                    </div>
                     <Form
                         form={onlineForm}
                         name="onlineForm"

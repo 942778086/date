@@ -10,7 +10,7 @@ module.exports = function (app) {
         }
     }))
     app.use(createProxyMiddleware('/balance', {
-        target: 'http://47.92.199.153:8082',
+        target: 'http://39.98.108.180:8082',
         secure: false,
         changeOrigin: true,
         pathRewrite: {
@@ -18,7 +18,7 @@ module.exports = function (app) {
         }
     }))
     app.use(createProxyMiddleware('/pay', {
-        target: 'http://47.92.199.153:8082',
+        target: 'http://39.98.108.180:8082',
         secure: false,
         changeOrigin: true,
         pathRewrite: {

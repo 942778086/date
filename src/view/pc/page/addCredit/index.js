@@ -103,9 +103,6 @@ function AddCredit() {
             {
                 !curMode ?
                 <div className='form-wrapper'>
-                    <div className='form-cover'>
-                        功能建设中...
-                    </div>
                     <Form
                         form={onlineForm}
                         name="onlineForm"

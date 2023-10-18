@@ -35,8 +35,11 @@ const api = {
     callAliPay: (orderId) => {
         return axios.post(`/pay/bank/ali/pay/${orderId}`)
     },
+    callMobileAliPay: (orderId) => {
+        return axios.post(`/pay/bank/mbweb/pay/${orderId}`)
+    },
     callWechatPay: (orderId) => {
-        return axios.post(`/pay/bank/wechat/${orderId}`)
+        return axios.post(`/pay/bank/jsapi/${orderId}`)
     },
     codeCredit: (account, code) => {
         return new Promise(resolve => {

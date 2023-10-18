@@ -23,7 +23,3 @@
     color: white;
     transform: scale(1.05);
 }
-
-#onlineForm {
-    filter: blur(1px);
-}

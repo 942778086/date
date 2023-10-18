@@ -72,42 +72,42 @@ function News() {
             <div className='page-title'>新闻动态</div>
             {
                 mode === 'list' ?
-                    <div className="news">
-                        <div className="news-menu">
-                            <Radio.Group onChange={onRadioChange}>
-                                <Radio value='ZH'><Tag>综合</Tag></Radio>
-                                <Radio value='XW'><Tag color="#108ee9">新闻</Tag></Radio>
-                                <Radio value='GG'><Tag color="#2db7f5">公告</Tag></Radio>
-                                <Radio value='HD'><Tag color="#87d068">活动</Tag></Radio>
-                            </Radio.Group>
-                        </div>
-                        <div className="news-list">
-                            {
-                                list.length ? list.map(item => {
-                                    return (
-                                    <div className='news-item' onClick={() => checkNewsDetail(item)}>
-                                        <div className='news-tag'>
-                                            <Tag className={item.newsType} color={colorMap[item.newsType].color}>{colorMap[item.newsType].title}</Tag>
-                                        </div>
-                                        <div className='news-title'>{ item.newsTitle }</div>
-                                    </div>)
-                                }) : <Empty description={<span>暂无数据</span>}/>
-                            }
-                        </div>
-                        {
-                            list.length ? <Pagination defaultCurrent={1} total={count} onChange={jumpPage} /> : <></>
-                        }
-                    </div> :
-                    <div className='news-detail'>
-                        <div className='news-detail-title'>
-                            <div className='news-detail-back' onClick={back}>
-                                <LeftCircleOutlined />返回
-                            </div>
-                            { curNews.newsTitle }
-                        </div>
-                        <div className='news-detail-content'>{newsDetil.newsContent}</div>
+                <div className="news">
+                    <div className="news-menu">
+                        <Radio.Group onChange={onRadioChange}>
+                            <Radio value='ZH'><Tag>综合</Tag></Radio>
+                            <Radio value='XW'><Tag color="#108ee9">新闻</Tag></Radio>
+                            <Radio value='GG'><Tag color="#2db7f5">公告</Tag></Radio>
+                            <Radio value='HD'><Tag color="#87d068">活动</Tag></Radio>
+                        </Radio.Group>
                     </div>
+                    <div className="news-list">
+                        {
+                            list.length ? list.map(item => {
+                                return (
+                                <div className='news-item' onClick={() => checkNewsDetail(item)}>
+                                    <div className='news-tag'>
+                                        <Tag className={item.newsType} color={colorMap[item.newsType].color}>{colorMap[item.newsType].title}</Tag>
+                                    </div>
+                                    <div className='news-title'>{ item.newsTitle }</div>
+                                </div>)
+                            }) : <Empty description={<span>暂无数据</span>}/>
+                        }
+                    </div>
+                    {
+                        list.length ? <Pagination defaultCurrent={1} total={count} onChange={jumpPage} /> : <></>
                     }
+                </div> :
+                <div className='news-detail'>
+                    <div className='news-detail-title'>
+                        <div className='news-detail-back' onClick={back}>
+                            <LeftCircleOutlined />返回
+                        </div>
+                        { curNews.newsTitle }
+                    </div>
+                    <div className='news-detail-content'>{newsDetil.newsContent}</div>
+                </div>
+            }
         </>
     )
 }
