@@ -38,22 +38,17 @@ const api = {
     callMobileAliPay: (orderId) => {
         return axios.post(`/pay/bank/mbweb/pay/${orderId}`)
     },
+    checkAliPayStatus: (data) => {
+        return axios.post('/notify/bank/mbweb', data)
+    },
     callWechatPay: (orderId) => {
         return axios.post(`/pay/bank/jsapi/${orderId}`)
     },
     codeCredit: (account, code) => {
         return new Promise(resolve => {
-            // test1
             const enc = new JSEncrypt();
             enc.setPublicKey(publicKey);
             const pwd = enc.encrypt(code);
-            console.log(pwd);
-
-            // test2
-            // const keyObj = X509.getPublicKeyFromCertHex(ArrayBuffertohex(hextoArrayBuffer(window.atob(publicKey))), null, 'x509pub');
-            // const encPwd = KJUR.crypto.Cipher.encrypt(code, keyObj);
-            // console.log(encPwd);
-
             axios.post('/balance/exchange', {
                 cardType: 'card100',
                 password: pwd,

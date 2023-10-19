@@ -30,7 +30,7 @@ function PCLayout() {
             <div className="header">
                 <div className='logo-name'>
                     <img className='logo' src={logo} alt=""/>
-                    <span className='company-name'>缘来幸福</span>
+                    <span className='company-name'>缘宝嘉缘</span>
                 </div>
                 <div className='menu-wrapper'>
                     <Tabs defaultActiveKey="1" items={menus} onChange={onMenuChange} />

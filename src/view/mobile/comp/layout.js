@@ -34,7 +34,7 @@ function MobileLayout() {
         <div className="mobile-layout">
             <div className="header">
                 <div className='logo-name'>
-                    <span className='company-name'>缘来幸福</span>
+                    <span className='company-name'>缘宝嘉缘</span>
                 </div>
                 <div className='menu-wrapper'>
                     <Tabs defaultActiveKey="1" items={menus} onChange={onMenuChange} />

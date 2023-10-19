@@ -40,7 +40,7 @@ function HomePage() {
                             <div className='download-tip'>
                                 <img className='download-logo' src={logo} alt=''></img>
                                 <div className='download-tip-label'>
-                                    <div className='download-title'>缘来幸福APP软件下载</div>
+                                    <div className='download-title'>缘宝嘉缘APP软件下载</div>
                                     <div className='download-sub-tip'>嘉园之旅迎向幸福</div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@ function HomePage() {
                             <div className='page2-label'>
                                 <p>才情交友私密空间，</p>
                                 <p>元宇宙约会空间，</p>
-                                <p>缘来幸福来看一看，</p>
+                                <p>缘宝嘉缘来看一看，</p>
                                 <p>满满幸福感。</p>
                             </div>
                             <div className='app-exam'>

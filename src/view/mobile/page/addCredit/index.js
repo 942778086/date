@@ -23,6 +23,7 @@ function AddCredit() {
         onlineForm.validateFields().then((data) => {
             console.log(data);
             const isAlipay = data.way === 'aliPay';
+            // 支付宝/微信下单
             api.onlineCredit({
                 payAmount: data.num.toString(),
                 payType: isAlipay ? 'alibank' : 'wechat',
@@ -32,19 +33,21 @@ function AddCredit() {
                 const orderId = res.retData.orderId;
                 const apiFunc = isAlipay ? api.callMobileAliPay : api.callWechatPay
                 apiFunc(orderId).then(orderRes => {
-                    console.log(orderRes);
+                    // 下单完成
                     if (isAlipay) {
+                        // 调起支付宝支付
                         const urlParams = orderRes.retData;
                         const url = `https://openapi.alipay.com/gateway.do?${urlParams}`
-                        alert(url)
-                        const div = document.createElement('div');
-                        div.innerHTML = `
-                        <form name="punchout_form" method="post" action="${url}"> </form>
-                        `
-                        div.style.cssText = 'display: none';
-                        document.body.appendChild(div);
-                        div.querySelector('form').submit();
+                     
+                        const newWindow = window.open('');
+                        newWindow.focus();
+                        newWindow.document.write(`
+                            <form name="punchout_form" method="post" action="${url}"> </form>
+                        `)
+                        newWindow.document.querySelector('form').submit();
+                        // 检测支付状态
                     } else {
+                        // 调起微信支付
                         const url = `https://wx.tenpay.com/cgi-bin/mmpayweb-bin/checkmweb?package=2150917749`
                         const retData = orderRes.retData;
                         wx.config({
@@ -119,7 +122,7 @@ function AddCredit() {
                         <Form.Item label="充值渠道" name="way" rules={[{ required: true, message: '请选择充值渠道' }]}>
                             <Radio.Group defaultValue="">
                                 <Radio.Button value="aliPay"><AlipayCircleOutlined />支付宝</Radio.Button>
-                                <Radio.Button value="wechat"><WechatOutlined />微信</Radio.Button>
+                                <Radio.Button disabled={true} value="wechat"><WechatOutlined />微信</Radio.Button>
                             </Radio.Group>
                         </Form.Item>
                         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
