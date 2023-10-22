@@ -52,7 +52,7 @@ function MobileLayout() {
                 <FloatButton description="微信公众号" icon={<img className='wechat-qrcode' src={qrcode} />}></FloatButton>
             </div>
             <div className='footer'>
-                鄂ICP备2023009541
+                鄂ICP备2023009541号-3
             </div>
         </div>
     )

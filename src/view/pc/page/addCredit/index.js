@@ -88,7 +88,7 @@ function AddCredit() {
             message.warning('两次账户输入不同');
             return;
         }
-        api.codeCredit(data.account, data.code).then(() => {
+        api.codeCredit(data.account, data.code, data.cardType).then(() => {
             setIsModalOpen(true);
         });
     }
@@ -117,7 +117,7 @@ function AddCredit() {
                             <InputNumber min={1} precision={0} step={10} />
                         </Form.Item>
                         <Form.Item label="充值渠道" name="way" rules={[{ required: true, message: '请选择充值渠道' }]}>
-                            <Radio.Group defaultValue="">
+                            <Radio.Group initialValues="">
                                 <Radio.Button value="aliPay"><AlipayCircleOutlined />支付宝</Radio.Button>
                                 <Radio.Button value="wechat"><WechatOutlined />微信</Radio.Button>
                             </Radio.Group>
@@ -141,6 +141,12 @@ function AddCredit() {
                     </Form.Item>
                     <Form.Item label="确认账户" name="confirmAccount" rules={[{ required: true, message: '请确认充值账户' }]}>
                         <Input onInput={(e) => codeForm.setFieldValue('confirmAccount', e.target.value)} />
+                    </Form.Item>
+                    <Form.Item label="兑换类型" name="cardType" rules={[{ required: true, message: '请选择兑换类型' }]}>
+                        <Radio.Group onChange={(e) => codeForm.setFieldValue('cardType', e.target.value)}>
+                            <Radio value="coupon20">面值20元体验券</Radio>
+                            <Radio value="card100">面值100元销售卡</Radio>
+                        </Radio.Group>
                     </Form.Item>
                     <Form.Item label="兑换码" name="code" rules={[{ required: true, message: '请输入兑换码' }]}>
                         <Input onInput={(e) => codeForm.setFieldValue('code', e.target.value)} />

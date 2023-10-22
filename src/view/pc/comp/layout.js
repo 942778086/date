@@ -47,7 +47,7 @@ function PCLayout() {
                 </Routes>
             </div>
             <div className='footer'>
-                鄂ICP备2023009541
+                鄂ICP备2023009541号-3
             </div>
             <FloatButton description="微信公众号" icon={<img src={qrcode} />}>
             </FloatButton>

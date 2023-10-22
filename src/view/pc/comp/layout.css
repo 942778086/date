@@ -8,9 +8,9 @@
 }
 
 .logo {
-    width: 40px;
-    height: 40px;
-    margin-top: 3px;
+    width: 32px;
+    height: 32px;
+    margin-top: 6px;
 }
 .header {
     padding: 0 30px;
@@ -26,7 +26,7 @@
     font-size: 25px;
     font-weight: bold;
     margin-left: 8px;
-    transform: translateY(-10px);
+    transform: translateY(-7px);
     display: inline-block;
 }
 .ant-float-btn-default {

@@ -44,13 +44,13 @@ const api = {
     callWechatPay: (orderId) => {
         return axios.post(`/pay/bank/jsapi/${orderId}`)
     },
-    codeCredit: (account, code) => {
+    codeCredit: (account, code, cardType) => {
         return new Promise(resolve => {
             const enc = new JSEncrypt();
             enc.setPublicKey(publicKey);
             const pwd = enc.encrypt(code);
             axios.post('/balance/exchange', {
-                cardType: 'card100',
+                cardType: cardType,
                 password: pwd,
                 source: 'gzh',
                 telephone: account
