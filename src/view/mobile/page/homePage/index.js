@@ -15,6 +15,9 @@ function HomePage() {
     const style = {
         height: height - 30 + 'px'
     }
+    const goDownload = (isIos) => {
+        window.open(isIos ? "https://www.pgyer.com/d3GcAo" : 'https://www.pgyer.com/ebY8sK', '_blank')
+    }
     return (<div className='home-page'>
         <ReactFullpage
             render={({ state, fullpageApi }) => {
@@ -46,13 +49,13 @@ function HomePage() {
                             </div>
                             <div className='download-area'>
                                 <div className='download-android'>
-                                    <Button size='large' type="primary" shape="round" icon={<AndroidOutlined />}>下载</Button>
-                                    <img className='download-qrcode' src={androidQrcode} alt=''/>
+                                    <Button size='large' type="primary" onClick={() => goDownload(false)} shape="round" icon={<AndroidOutlined />}>下载</Button>
+                                    <img className='download-qrcode' src="https://www.pgyer.com/app/qrcode/ebY8sK" alt=''/>
                                 </div>
                                 <Divider type="vertical" />
                                 <div className='download-ios'>
-                                    <Button size='large' type="primary" shape="round" icon={<AppleOutlined />}>下载</Button>
-                                    <img className='download-qrcode' src={iosQrcode} alt=''/>
+                                    <Button size='large' type="primary" onClick={() => goDownload(true)} shape="round" icon={<AppleOutlined />}>下载</Button>
+                                    <img className='download-qrcode' src="https://www.pgyer.com/app/qrcode/d3GcAo" alt=''/>
                                 </div>
                             </div>
                         </div>

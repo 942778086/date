@@ -4,6 +4,9 @@ import './index.css'
 import qrcode from '../../../../assets/img/qrcode.png'
 
 function HomePage() {
+    const goDownload = (isIos) => {
+        window.open(isIos ? "https://www.pgyer.com/d3GcAo" : 'https://www.pgyer.com/ebY8sK', '_blank')
+    }
     return (
     <div className="home-page">
         <div className="carousel-wrapper">
@@ -21,12 +24,12 @@ function HomePage() {
         <div className='app-content'>
             <div className='download-area'>
                 <div className='android-download'>
-                    <img src={qrcode}></img>
-                    <Button className='download-btn' size='large' type="primary" shape="round" icon={<AndroidFilled />}>下载</Button>
+                    <img className='download-img' src="https://www.pgyer.com/app/qrcode/ebY8sK"></img>
+                    <Button className='download-btn' size='large' onClick={() => goDownload(false)} type="primary" shape="round" icon={<AndroidFilled />}>下载</Button>
                 </div>
                 <div className='ios-download'>
-                    <img src={qrcode}></img>
-                    <Button className='download-btn' size='large' type="primary" shape="round" icon={<AppleFilled />}>下载</Button>
+                    <img className='download-img' src="https://www.pgyer.com/app/qrcode/d3GcAo"></img>
+                    <Button className='download-btn' size='large' onClick={() => goDownload(true)} type="primary" shape="round" icon={<AppleFilled />}>下载</Button>
                 </div>
             </div>
             <div className='app-detail'>
